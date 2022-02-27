@@ -20,13 +20,17 @@ export const Train = async (SpecIter?: number) => {
         TrainingData.map(t => [
             t.type == 'greeting' ? 1 : 0,
             t.type == 'bye' ? 1 : 0,
+            t.type == 'thanks' ? 1 : 0,
+            t.type == 'yesno' ? 1 : 0,
+            t.type == 'compliment' ? 1 : 0,
+            t.type == 'insult' ? 1 : 0,
         ])
     )
 
     const Model = sequential()
 
     Model.add(layers.dense({
-        units: 2,
+        units: 6,
         activation: "softmax",
         inputShape: [XLayer.shape[1]]
     }))
@@ -115,8 +119,7 @@ export const Talk = async (message: string) => {
     const Model = await loadLayersModel("file://./Model/model.json")
 
     const SentenceEncoder = await load()
-    let Data = [{ message: message }]
-    let Sentence = Data.map(t => t.message.toLowerCase())
+    let Sentence = [{ message: message.toLowerCase() }].map(t => t.message)
 
     const XLayer = await SentenceEncoder.embed(Sentence)
     // @ts-ignore
@@ -124,7 +127,9 @@ export const Talk = async (message: string) => {
 
     let Highest = [0, 0];
     for (let i = 0; i < Prediction.length; ++i) {
-        if (Highest[i] < Prediction[i]) {
+        Log(0, `${i}th: Score ${Prediction[i]}`)
+        if (Highest[1] < Prediction[i]) {
+            Log(0, `${i}th: Score ${Prediction[i]} (New Highest)`)
             Highest[0] = i;
             Highest[1] = Prediction[i];
         }
@@ -132,12 +137,12 @@ export const Talk = async (message: string) => {
 
     let Predicted = "";
     switch (Highest[0]) {
-        case 0:
-            Predicted = "greeting"
-            break
-        case 1:
-            Predicted = "bye"
-            break
+        case 0: Predicted = "greeting"; break
+        case 1: Predicted = "bye"; break
+        case 2: Predicted = "thanks"; break
+        case 3: Predicted = "yesno"; break
+        case 4: Predicted = "compliment"; break
+        case 5: Predicted = "insult"; break
     }
 
     Log(0, `High: ${Highest} - Predicted: ${Predicted}`)
