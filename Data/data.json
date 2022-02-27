@@ -1,0 +1,41 @@
+{
+    "inputs": {
+        "greeting": [
+            "Hello",
+            "Hi",
+            "Hey",
+            "Howdy",
+            "Greetings",
+            "What's up",
+            "Sup",
+            "Yo",
+            "Good morning",
+            "Good afternoon",
+            "Good evening"
+        ],
+        "bye": [
+            "Bye",
+            "Goodbye",
+            "See you later",
+            "Gotta go",
+            "Catch you later",
+            "gtg",
+            "See you again!"
+        ],
+        "compliment": [
+            "You are smart"
+        ]
+    },
+    "outputs": {
+        "greeting": [
+            "Hi!"
+        ],
+        "bye": [
+            "Bye!",
+            "See you later!"
+        ],
+        "compliment": [
+            "Thank you!"
+        ]
+    }
+}
