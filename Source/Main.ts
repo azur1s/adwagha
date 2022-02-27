@@ -5,7 +5,7 @@ import fs from 'fs'
 
 // Interal modules
 import { Log } from './Util'
-import { Talk, Train } from './Meta'
+import { Talk, Train } from './Tensor'
 
 // Load environment variables
 Env.config()
