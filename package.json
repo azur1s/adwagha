@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "devDependencies": {
+    "@tensorflow-models/universal-sentence-encoder": "^1.3.3",
+    "@tensorflow/tfjs-node": "^3.13.0",
     "dotenv": "^16.0.0",
     "eris": "^0.16.1",
-    "node-nlp": "^4.22.18",
     "ts-node": "^10.5.0",
     "typescript": "^4.5.5"
   },

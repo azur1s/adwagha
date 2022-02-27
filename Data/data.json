@@ -1,41 +1,23 @@
 {
-    "inputs": {
-        "greeting": [
-            "Hello",
+    "greeting": {
+        "patterns": [
             "Hi",
-            "Hey",
-            "Howdy",
-            "Greetings",
-            "What's up",
-            "Sup",
-            "Yo",
-            "Good morning",
-            "Good afternoon",
-            "Good evening"
+            "Hello"
         ],
-        "bye": [
-            "Bye",
-            "Goodbye",
-            "See you later",
-            "Gotta go",
-            "Catch you later",
-            "gtg",
-            "See you again!"
-        ],
-        "compliment": [
-            "You are smart"
+        "responses": [
+            "Hello, how can I help you?",
+            "Good day! How can I help you?"
         ]
     },
-    "outputs": {
-        "greeting": [
-            "Hi!"
+    "bye": {
+        "patterns": [
+            "Bye",
+            "Goodbye",
+            "See you later"
         ],
-        "bye": [
-            "Bye!",
-            "See you later!"
-        ],
-        "compliment": [
-            "Thank you!"
+        "responses": [
+            "It was nice talking to you. See you soon!",
+            "Goodbye, hope to see you soon!"
         ]
     }
 }

@@ -5,7 +5,7 @@ import fs from 'fs'
 
 // Interal modules
 import { Log } from './Util'
-import { GenerateResponse, Manager, Train } from './Chat'
+import { Talk, Train } from './Meta'
 
 // Load environment variables
 Env.config()
@@ -13,9 +13,6 @@ const Token = process.env.TOKEN || ''
 const OpenAI_Token = process.env.OPENAI_API_KEY || ''
 
 Log(0, "Starting up...")
-
-// Use NLP Manager
-const NlpManager = Manager
 
 // Create a new Discord client
 const Bot: Eris.Client = Eris(Token, {
@@ -57,26 +54,14 @@ Bot.on("messageCreate", async (message: Eris.Message) => {
             Send("hi", message.channel.id)
             break
         case "$":
-            Send(await GenerateResponse(Words.slice(1).join(" ")), message.channel.id)
+            message.channel.sendTyping()
+            let Result = await Talk(Words.slice(1).join(" "))
+            Send(`${Result}`, message.channel.id)
             break
         case "train":
-            if (Words.length < 4) {
-                Send("Invalid arguments, Usage: `$train [input/output] type message`", message.channel.id)
-                break
-            }
-            let result = Train(Words[1], Words[2], Words.slice(3).join(" "))
-            if (result[0] === undefined) {
-                Send("Unknown IO, please use `input` or `output`", message.channel.id)
-            } else if (result[0] === false) {
-                Send("Failed to add the message", message.channel.id)
-            } else {
-                Send("Added message! restarting due to changes...", message.channel.id)
-
-                // Wait a bit so the message is sent
-                await new Promise(resolve => setTimeout(resolve, 1000))
-
-                fs.writeFileSync('./Data/data.json', result[1])
-            }
+            let SpecIter = Words.length > 1 ? parseInt(Words[1]) : undefined
+            Train(SpecIter)
+            break
     }
 })
 
