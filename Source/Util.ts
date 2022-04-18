@@ -10,14 +10,14 @@ const Colors: Map<string, string> = new Map([
  * @param level   The severity of the log
  * @param message The message to log
  */
- export const Log = (level: number, message: string | string[]): void => {
+ export const log = (level: number, message: string | string[]): void => {
     switch ( level ) {
         case 2 : console.log(`${Colors.get("red")}[Error]${Colors.get("reset")} ${message}`)
                  break
-        
+
         case 1 : console.log(`${Colors.get("yellow")}[Warn]${Colors.get("reset")} ${message}`)
                  break
-        
+
         case 0 : console.log(`${Colors.get("green")}[Info]${Colors.get("reset")} ${message}`)
                  break
 
