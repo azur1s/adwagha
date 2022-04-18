@@ -1,7 +1,7 @@
 import Eris from "eris"
-import { Client } from "./Client"
 
-import { Command } from "./Commands/Index"
+import { Command } from "@types"
+import { Client } from "./Client"
 import { log } from "./Util"
 
 /**
@@ -22,13 +22,10 @@ export const send = (client: Client, message: string, channel: string): void => 
 export const handle = (client: Client, message: Eris.Message): void => {
     if (message.author.bot) return
 
-    // Get the command prefix
-    const prefix = process.env.PREFIX || "!"
-
     // Check if the message starts with the prefix
-    if (message.content.startsWith(prefix)) {
+    if (message.content.startsWith(client.prefix)) {
         // Get the command name
-        const calling = message.content.slice(prefix.length).split(" ")[0]
+        const calling = message.content.slice(client.prefix.length).split(" ")[0]
 
         // Get the command
         const command: Command | undefined = client.commands.get(calling)
@@ -39,4 +36,8 @@ export const handle = (client: Client, message: Eris.Message): void => {
             log(0, `${message.author.username}#${message.author.discriminator} ran the command ${calling}`)
         }
     }
+}
+
+export const getArgs = (client: Client, message: Eris.Message): string[] => {
+    return message.content.slice(client.prefix.length).split(" ").slice(1)
 }

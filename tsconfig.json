@@ -12,5 +12,10 @@
         "baseUrl": "./",
         "forceConsistentCasingInFileNames": true,
         "allowJs": true,
+        "paths": {
+            "@types": [
+                "Source/Types"
+            ]
+        }
     },
 }
