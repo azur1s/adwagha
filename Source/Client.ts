@@ -5,10 +5,11 @@ import { Command, UserData } from "@types"
 import { getCommands } from "./commands/Index"
 import { handle } from "./Message"
 import { log } from "./Util"
+import { Database } from "./database/Database"
 
 export class Client {
     public internal: Eris.Client
-    public users: UserData[]
+    public database: Database
 
     public commands: Map<string, Command> = new Map()
     public prefix: string
@@ -18,10 +19,7 @@ export class Client {
             intents: [ "guilds" , "guildMessages" ]
         })
 
-        this.users = []
-        if (fs.existsSync("./data/users.json")) {
-            this.users = JSON.parse(fs.readFileSync("./data/users.json", "utf8"))
-        }
+        this.database = new Database()
 
         // Initialize commands
         this.prefix = process.env.PREFIX || "!"
