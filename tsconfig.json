@@ -4,17 +4,20 @@
         "strict": true,
         "esModuleInterop": true,
         "skipLibCheck": true,
-        "target": "ES2017",
+        "target": "ESNext",
+        "module": "CommonJS",
         "moduleResolution": "node",
         "outDir": "dist",
         "declaration": false,
-        "module": "commonjs",
         "baseUrl": "./",
         "forceConsistentCasingInFileNames": true,
         "allowJs": true,
         "paths": {
             "@types": [
-                "Source/Types"
+                "source/Types"
+            ],
+            "@client": [
+                "source/Client"
             ]
         }
     },

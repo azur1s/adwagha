@@ -1,9 +1,14 @@
-import Eris from "eris";
-import { Client } from "./Client";
+import Eris from "eris"
+import { Client } from "source/Client"
 
 export interface Command {
     name:        string,
     description: string,
     usage:       string,
     call:        (client: Client, message: Eris.Message) => void,
+}
+
+export interface UserData {
+    uuid:  string,
+    count: number,
 }

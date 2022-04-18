@@ -1,11 +1,11 @@
-import { Command } from "@types"
+import { Command } from "source/Types"
 
-import { Test } from "./Test"
-import { Help } from "./Help"
+import { test } from "./Test"
+import { help } from "./Help"
 
 export const getCommands = (): Map<string, Command> => {
     return new Map([
-        [ "help", Help ],
-        [ "test", Test ],
+        [ "help", help ],
+        [ "test", test ],
     ])
 }

@@ -1,23 +1,31 @@
-import Eris from "eris";
+import Eris, { User } from "eris"
+import fs from "fs"
 
-import { Command } from "@types"
-import { getCommands } from "./Commands/Index";
-import { handle } from "./Message";
-import { log } from "./Util";
+import { Command, UserData } from "@types"
+import { getCommands } from "./commands/Index"
+import { handle } from "./Message"
+import { log } from "./Util"
 
 export class Client {
-    public internal: Eris.Client;
-    public commands: Map<string, Command> = new Map();
-    public prefix: string = "!";
+    public internal: Eris.Client
+    public users: UserData[]
+
+    public commands: Map<string, Command> = new Map()
+    public prefix: string
 
     constructor(token: string) {
         this.internal = Eris(token, {
             intents: [ "guilds" , "guildMessages" ]
         })
 
+        this.users = []
+        if (fs.existsSync("./data/users.json")) {
+            this.users = JSON.parse(fs.readFileSync("./data/users.json", "utf8"))
+        }
+
         // Initialize commands
         this.prefix = process.env.PREFIX || "!"
-        this.commands = getCommands();
+        this.commands = getCommands()
 
         // On message creation event
         this.internal.on("messageCreate", async (message: Eris.Message) => {

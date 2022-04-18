@@ -1,8 +1,8 @@
 import Eris from "eris"
-import { Client } from "Source/Client"
+import { Client } from "source/Client"
 import { getArgs, send } from "../Message"
 
-export const Help = {
+export const help = {
     name: "help",
     description: "Display help information",
     usage: "help [command]",

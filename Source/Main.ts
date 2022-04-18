@@ -1,7 +1,5 @@
 // External modules
-import Eris from "eris"
 import Env from "dotenv"
-import fs from "fs"
 
 // Interal modules
 import { log } from "./Util"

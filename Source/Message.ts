@@ -1,7 +1,7 @@
 import Eris from "eris"
 
-import { Command } from "@types"
-import { Client } from "./Client"
+import { Command } from "source/Types"
+import { Client } from "source/Client"
 import { log } from "./Util"
 
 /**

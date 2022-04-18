@@ -1,8 +1,8 @@
 {
-  "name": "danger-zone",
+  "name": "adwagha",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "source/Main.ts",
   "devDependencies": {
     "dotenv": "^16.0.0",
     "eris": "^0.16.1",
@@ -10,7 +10,7 @@
     "typescript": "^4.5.5"
   },
   "scripts": {
-    "dev": "nodemon ./Source/Main.ts"
+    "dev": "nodemon ./source/Main.ts"
   },
   "keywords": [],
   "author": "",
