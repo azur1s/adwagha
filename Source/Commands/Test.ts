@@ -1,6 +1,12 @@
-import type { Command } from "../Message"
-import { Send } from "../Message"
+import Eris from "eris"
+import { Client } from "Source/Client"
+import { send } from "../Message"
 
-export const Test: Command = (bot, message) => {
-    Send(bot, "Hi", message.channel.id)
+export const Test = {
+    name: "test",
+    description: "Test command",
+    usage: "test",
+    call: (client: Client, message: Eris.Message): void => {
+        send(client, "hi", message.channel.id)
+    }
 }

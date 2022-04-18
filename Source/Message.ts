@@ -1,23 +1,25 @@
 import Eris from "eris"
-import { getCommands } from "./Commands/Index"
+import { Client } from "./Client"
+
+import { Command } from "./Commands/Index"
 import { log } from "./Util"
 
 /**
  * Send a message to a channel
- * @param bot Eris client
+ * @param client Eris client
  * @param message The message string
  * @param channel The channel to send the message to
  */
-export const Send = (bot: Eris.Client, message: string, channel: string): void => {
-    bot.createMessage(channel, message)
+export const send = (client: Client, message: string, channel: string): void => {
+    client.internal.createMessage(channel, message)
 }
 
 /**
  * Handle a message event
- * @param bot Eris client
+ * @param client Eris client
  * @param message The Eris message object
  */
-export const Handle = (bot: Eris.Client, message: Eris.Message): void => {
+export const handle = (client: Client, message: Eris.Message): void => {
     if (message.author.bot) return
 
     // Get the command prefix
@@ -29,14 +31,12 @@ export const Handle = (bot: Eris.Client, message: Eris.Message): void => {
         const calling = message.content.slice(prefix.length).split(" ")[0]
 
         // Get the command
-        const commandObject: Command | undefined = getCommands().get(calling)
+        const command: Command | undefined = client.commands.get(calling)
 
         // Check if the command exists
-        if (commandObject) {
-            commandObject(bot, message)
+        if (command) {
+            command.call(client, message)
             log(0, `${message.author.username}#${message.author.discriminator} ran the command ${calling}`)
         }
     }
 }
-
-export type Command = (bot: Eris.Client, message: Eris.Message) => void
