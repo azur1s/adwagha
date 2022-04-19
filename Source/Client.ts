@@ -37,4 +37,8 @@ export class Client {
         // Connect to discord
         this.internal.connect()
     }
+
+    public cleanup() {
+        this.database.save()
+    }
 }

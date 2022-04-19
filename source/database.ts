@@ -24,7 +24,6 @@ export class Database {
 
     /**
      * Check if the user exist in the client's database
-     * @param client The client to check
      * @param user The user in Eris format
      * @returns true if exist, false if not
      */
@@ -34,7 +33,6 @@ export class Database {
 
     /**
      * Create a new user in the database
-     * @param client The client
      * @param user The user in Eris format
      * @returns The new user created
      */
@@ -44,13 +42,20 @@ export class Database {
             count: 0,
         }
         this.users.push(newData)
-        this.save()
         return newData
+    }
+
+    public newUserWith = (user: Eris.User, data: UserData): UserData => {
+        this.users.push(data)
+        return data
+    }
+
+    public getUser = (user: Eris.User): UserData | undefined => {
+        return this.users.find(u => u.uuid === user.id)
     }
 
     /**
      * Update user data in database
-     * @param client The client
      * @param user The user in Eris format
      * @param updated The new user data
      * @returns true if the user was updated, false if the user was not found
@@ -60,7 +65,6 @@ export class Database {
         const index = this.users.findIndex(u => u.uuid === user.id)
         if (index !== -1) {
             this.users[index] = updated
-            this.save()
         // If there is no user with that id
         } else {
             return false
