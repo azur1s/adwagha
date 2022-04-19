@@ -28,7 +28,7 @@ export class Database {
      * @param user The user in Eris format
      * @returns true if exist, false if not
      */
-    public doesUserExist(client: Client, user: Eris.User): boolean {
+    public doesUserExist(user: Eris.User): boolean {
         return this.users.some(u => u.uuid === user.id)
     }
 
@@ -38,7 +38,7 @@ export class Database {
      * @param user The user in Eris format
      * @returns The new user created
      */
-    public newUser = (client: Client, user: Eris.User): UserData => {
+    public newUser = (user: Eris.User): UserData => {
         const newData: UserData = {
             uuid: user.id,
             count: 0,
@@ -55,7 +55,7 @@ export class Database {
      * @param updated The new user data
      * @returns true if the user was updated, false if the user was not found
      */
-    public updateUser = (client: Client, user: Eris.User, updated: UserData): boolean => {
+    public updateUser = (user: Eris.User, updated: UserData): boolean => {
         // Check if user exists
         const index = this.users.findIndex(u => u.uuid === user.id)
         if (index !== -1) {
