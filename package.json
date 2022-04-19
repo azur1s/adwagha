@@ -2,7 +2,7 @@
   "name": "adwagha",
   "version": "1.0.0",
   "description": "",
-  "main": "source/Main.ts",
+  "main": "source/main.ts",
   "devDependencies": {
     "dotenv": "^16.0.0",
     "eris": "^0.16.1",
@@ -10,7 +10,7 @@
     "typescript": "^4.5.5"
   },
   "scripts": {
-    "dev": "nodemon ./source/Main.ts"
+    "dev": "nodemon ./source/main.ts"
   },
   "keywords": [],
   "author": "",

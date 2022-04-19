@@ -1,8 +1,8 @@
 import Eris from "eris"
 
-import { Command } from "source/Types"
-import { Client } from "source/Client"
-import { log } from "./Util"
+import { Command } from "@types"
+import { Client } from "source/client"
+import { log } from "./util"
 
 /**
  * Send a message to a channel

@@ -13,12 +13,7 @@
         "forceConsistentCasingInFileNames": true,
         "allowJs": true,
         "paths": {
-            "@types": [
-                "source/Types"
-            ],
-            "@client": [
-                "source/Client"
-            ]
-        }
+            "@types": [ "./source/types.ts" ],
+        },
     },
 }

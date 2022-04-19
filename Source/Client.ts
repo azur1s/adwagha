@@ -1,11 +1,10 @@
 import Eris, { User } from "eris"
-import fs from "fs"
 
-import { Command, UserData } from "@types"
-import { getCommands } from "./commands/Index"
-import { handle } from "./Message"
-import { log } from "./Util"
-import { Database } from "./database/Database"
+import { Command } from "@types"
+import { Database } from "./database"
+import { getCommands } from "./commands/commands"
+import { handle } from "./message"
+import { log } from "./util"
 
 export class Client {
     public internal: Eris.Client

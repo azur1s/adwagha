@@ -1,7 +1,7 @@
 import Eris from "eris"
-import { Client } from "source/Client"
-import { Database } from "source/database/Database"
-import { send } from "../Message"
+import { Client } from "source/client"
+import { Database } from "source/database"
+import { send } from "../message"
 
 export const test = {
     name: "test",

@@ -1,5 +1,5 @@
 import Eris from "eris"
-import { Client } from "source/Client"
+import { Client } from "source/client"
 
 export interface Command {
     name:        string,

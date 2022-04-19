@@ -1,7 +1,7 @@
-import { Command } from "source/Types"
+import { Command } from "@types"
 
-import { test } from "./Test"
-import { help } from "./Help"
+import { test } from "./test"
+import { help } from "./help"
 
 export const getCommands = (): Map<string, Command> => {
     return new Map([

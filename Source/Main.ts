@@ -2,8 +2,8 @@
 import Env from "dotenv"
 
 // Interal modules
-import { log } from "./Util"
-import { Client } from "./Client"
+import { log } from "./util"
+import { Client } from "./client"
 
 // Load environment variables
 Env.config()
