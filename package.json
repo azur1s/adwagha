@@ -1,5 +1,5 @@
 {
-    "name": "test",
+    "name": "adwagha",
     "version": "1.0.0",
     "description": "",
     "main": "src/main.ts",
@@ -9,6 +9,7 @@
     "author": "",
     "license": "ISC",
     "devDependencies": {
+        "eris": "^0.16.1",
         "knex": "^2.0.0",
         "sqlite3": "^5.0.8",
         "toml": "^3.0.0",

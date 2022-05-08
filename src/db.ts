@@ -1,15 +1,14 @@
 import { Knex, knex } from "knex";
 import { IDBConfig } from "./config";
-
-interface User {
-    id: number;
-    discordID: string;
-    xp: number;
-}
+import { IUserData } from "./types";
 
 export class Database {
     private static instance: Knex<any, unknown[]>;
 
+    /**
+     * Initializes the database instance.
+     * @param config The database configuration.
+     */
     constructor(config: IDBConfig) {
         Database.instance = knex({
             client: "sqlite3",
@@ -37,40 +36,36 @@ export class Database {
 
     /**
      * Create new user in users table.
-     * @param discordId Discord ID of user.
+     * @param discordID Discord ID of user.
      */
-    async newUser(discordId: string): Promise<void> {
+    async newUser(discordID: string): Promise<void> {
         await Database.instance.table("users").insert({
-            discordID: discordId,
+            discordID: discordID,
             xp: 0
-        }).then(() => {
-            return;
         });
     }
 
     /**
      * Get user from users table.
-     * @param discordId Discord ID of user.
+     * @param discordID Discord ID of user.
      */
-    async getUser(discordId: string): Promise<User> {
+    async getUser(discordID: string): Promise<IUserData> {
         return await Database.instance
         .table("users")
-        .where("discordID", discordId)
+        .where("discordID", discordID)
         .first();
     }
 
     /**
      * Add XP to user.
-     * @param discordId Discord ID of user.
+     * @param discordID Discord ID of user.
      * @param xp Amount of XP to add.
      */
-    async addXP(discordId: string, xp: number): Promise<void> {
+    async addXP(discordID: string, xp: number): Promise<void> {
         await Database.instance
         .table("users")
-        .where("discordID", discordId)
+        .where("discordID", discordID)
         .increment("xp", xp)
-        .then(() => {
-            return;
-        })
+        .then(() => { return; })
     }
 }
