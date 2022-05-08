@@ -1,0 +1,12 @@
+[bot]
+token = ""
+prefix = "!"
+
+[log]
+debug = "[DEBUG] "
+info = "[INFO] "
+warn = "[WARN] "
+error = "[ERROR] "
+
+[db]
+path = "./data.sqlite3"

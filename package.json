@@ -1,18 +1,17 @@
 {
-  "name": "adwagha",
-  "version": "1.0.0",
-  "description": "",
-  "main": "source/main.ts",
-  "devDependencies": {
-    "dotenv": "^16.0.0",
-    "eris": "^0.16.1",
-    "ts-node": "^10.5.0",
-    "typescript": "^4.5.5"
-  },
-  "scripts": {
-    "dev": "nodemon ./source/main.ts"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC"
+    "name": "test",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/main.ts",
+    "scripts": {
+        "dev": "npx ts-node src/main.ts"
+    },
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "knex": "^2.0.0",
+        "sqlite3": "^5.0.8",
+        "toml": "^3.0.0",
+        "ts-node": "^10.7.0"
+    }
 }

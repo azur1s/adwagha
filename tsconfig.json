@@ -12,8 +12,5 @@
         "baseUrl": "./",
         "forceConsistentCasingInFileNames": true,
         "allowJs": true,
-        "paths": {
-            "@types": [ "./source/types.ts" ],
-        },
     },
 }
