@@ -4,13 +4,14 @@
     "description": "",
     "main": "src/main.ts",
     "scripts": {
-        "dev": "npx ts-node src/main.ts"
+        "dev": "npx nodemon src/main.ts -q"
     },
     "author": "",
     "license": "ISC",
     "devDependencies": {
         "eris": "^0.16.1",
         "knex": "^2.0.0",
+        "nodemon": "^2.0.16",
         "sqlite3": "^5.0.8",
         "toml": "^3.0.0",
         "ts-node": "^10.7.0"

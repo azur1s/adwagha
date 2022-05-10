@@ -18,6 +18,7 @@ export class Client {
     constructor(config: IConfig) {
         this.config = config;
         this.database = new Database(this.config.db);
+        this.database.init();
         this.logger = new Logger(this.config.log);
 
         // Load commands
@@ -28,27 +29,30 @@ export class Client {
             intents: [ "guilds" , "guildMessages" ]
         });
 
+        // Handle messages
         this.internal.on("messageCreate", async (message: Eris.Message) => {
-            if (message.author.bot) return;
-            if (!message.content.startsWith(this.config.bot.prefix)) return;
+            // Check if message is from bot or not starting with prefix
+            if (message.author.bot || !message.content.startsWith(this.config.bot.prefix)) return;
 
-            const calling = message.content.split(" ")[0].replace(this.config.bot.prefix, "");
-            const command = this.commands.find(c => c.name === calling);
-
+            // Find command
+            const command = this.commands
+                .find(c => c.name === message.content.split(" ")[0].replace(this.config.bot.prefix, ""));
             if (!command) return;
-            const result = command.fn(message);
 
+            const result = command.fn(this, message);
             if (result instanceof Promise) {
                 await result.then(r => {
-                    if (typeof r === "string") message.channel.createMessage(r);
+                    if (typeof r === "string") this.send(message.channel.id, r);
                 })
             } else if (typeof result === "string") {
-                message.channel.createMessage(result);
+                this.send(message.channel.id, result);
             }
+
+            this.logger.info(`${message.author.username}#${message.author.discriminator} ran command ${command.name}`);
         });
 
         this.internal.on("ready", () => {
-            this.logger.info("Bot is ready!");
+            this.logger.info(`Logged in as ${this.internal.user.username}#${this.internal.user.discriminator}`);
         });
 
         this.internal.connect();

@@ -48,12 +48,40 @@ export class Database {
     /**
      * Get user from users table.
      * @param discordID Discord ID of user.
+     * @returns User data or undefined if user doesn't exist.
      */
     async getUser(discordID: string): Promise<IUserData> {
         return await Database.instance
         .table("users")
         .where("discordID", discordID)
         .first();
+    }
+
+    /**
+     * Get all users from users table sorted by XP.
+     * @param length Amount of users to get.
+     * @returns Array of users.
+     */
+    async getUsers(length: number): Promise<IUserData[]> {
+        return await Database.instance
+        .table("users")
+        .orderBy("xp", "desc")
+        .limit(length)
+    }
+
+    /**
+     * Check if user exists in users table.
+     * @param discordID Discord ID of user.
+     * @returns Whether user exists or not.
+     */
+    async doesUserExist(discordID: string): Promise<boolean> {
+        return await Database.instance
+        .table("users")
+        .where("discordID", discordID)
+        .first()
+        .then(user => {
+            return user ? true : false;
+        });
     }
 
     /**
